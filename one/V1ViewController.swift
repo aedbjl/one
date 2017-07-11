@@ -95,30 +95,29 @@ class V1ViewController: UIViewController,UITableViewDelegate ,UITableViewDataSou
     }
     
     
-    
-//    private func pic() {
-//        DispatchQueue.main.async {
-//            
-//            self.initStat()
-//            do {
-//                
-//                let photoURL_str = String("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=\(self.app.jsonResults[indexPath.row]["place_reference"]! )&key=\(self.app.gmsServicesKey)")
-//                
-//                let photoPath_str = self.photoDir! + "/" + ( self.app.jsonResults[indexPath.row]["place_id"]! ) + ".jpg"
-//                
-//                if !self.fmgr.fileExists(atPath: photoPath_str) {
-//                    try self.wgetPhoto(photoURL_str!, toPath: photoPath_str)
-//                    
-//                    
-//                }
-//                
-////                self.counter += 1
-//                
-//            } catch {
-//                print(error)
-//            }
-//        }
-//    }
+       private func pic() {
+        DispatchQueue.main.async {
+            
+            self.initStat()
+            do {
+                for i in self.app.jsonResults {
+                let photoURL_str = String("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=\(i["place_reference"]! )&key=\(self.app.gmsServicesKey)")
+                
+               let photoPath_str = self.photoDir! + "/" + (i["place_id"])! + ".jpg"
+                
+                if !self.fmgr.fileExists(atPath: photoPath_str) {
+                   try self.wgetPhoto(photoURL_str!, toPath: photoPath_str)
+
+                   
+                }
+                
+                }
+                
+            } catch {
+                print(error)
+           }
+       }
+    }
     
     private func initStat() {
         
@@ -146,7 +145,7 @@ class V1ViewController: UIViewController,UITableViewDelegate ,UITableViewDataSou
         super.viewDidLoad()
         initStat()
 //        for i in 0...app.jsonResults.count{
-//            pic()
+            pic()
 //        }
         // Do any additional setup after loading the view.
     }
