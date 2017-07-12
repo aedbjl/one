@@ -193,7 +193,7 @@ class V1ViewController: UIViewController,UITableViewDelegate ,UITableViewDataSou
         super.viewDidLoad()
         initStat()
 //        for i in 0...app.jsonResults.count{
-//            pic()
+            pic()
 //        }
         pic()
         print(docDir)
